@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS deefy;
+CREATE USER IF NOT EXISTS 'deefy_user'@'%' IDENTIFIED BY 'deefy_pass';
+GRANT ALL PRIVILEGES ON onsie.* TO 'deefy_user'@'%';
+FLUSH PRIVILEGES;
