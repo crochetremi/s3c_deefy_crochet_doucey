@@ -20,31 +20,34 @@ class SigninAction extends Action
         return '';
     }
 
-    private function displayForm(): string
-    {
-        return '<form method="POST" action="">
-                  <div class="field">
-                        <label class="label" for="email">Email</label>
-                        <div class="control">
-                            <input class="input" type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label" for="passwd">Mot de passe</label>
-                        <div class="control">
-                            <input class="input" type="password" id="passwd" name="passwd" required>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-link" type="submit">Se connecter</button>
-                        </div>
-                    </div>
-                   
-                </form>
-                <br/>
-                <p>Pas encore de compte ? <a href="?action=register">Inscrivez-vous</a></p>';
-    }
+    private function displayForm(): string {
+    return <<<HTML
+    <div class="container">
+        <h1 class="subtitle">Connexion</h1>
+        <form method="POST" action="">
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <div class="control">
+                    <input class="input" type="email" id="email" name="email" required
+                           placeholder="votre.email@example.com">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="passwd">Mot de passe</label>
+                <div class="control">
+                    <input class="input" type="password" id="passwd" name="passwd" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button" type="submit">Se connecter</button>
+                </div>
+            </div>
+        </form>
+        <p>Pas encore de compte ? <a href="?action=register">Inscrivez-vous</a></p>
+    </div>
+    HTML;
+}
 
     private function handleFormSubmission(): ?string
     {

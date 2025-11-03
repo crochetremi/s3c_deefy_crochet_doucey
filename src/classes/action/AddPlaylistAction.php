@@ -12,23 +12,25 @@ class AddPlaylistAction extends Action
     {
         if ($this->http_method === 'GET') {
             //Formulaire
-            $html =
-                <<<HTML
-                    <h1 class='subtitle'>Création d'une playlist</h1>
-                    <form method='post' action='?action=add-playlist'>
-                    <div class='field'>
-                    <label class='label' for='nom'>Nom de la playlist</label>
-                    <div class='control'>
-                    <input class='input' type='text' id='nom' name='nom' required>
-                    </div>
-                    </div>
-                    <div class='field'>
-                    <div class='control'>
-                    <button class='button is-link' type='submit'>Créer la playlist</button>
-                    </div>
-                    </div>
-                    </form>
-                HTML;
+           $html = <<<HTML
+          <div class="container">
+              <h1 class='subtitle'>Création d'une playlist</h1>
+              <form method='post' action='?action=add-playlist'>
+                  <div class='field'>
+                      <label class='label' for='nom'>Nom de la playlist</label>
+                      <div class='control'>
+                          <input class='input' type='text' id='nom' name='nom' required 
+                                 placeholder='Ma nouvelle playlist'>
+                      </div>
+                  </div>
+                  <div class='field'>
+                      <div class='control'>
+                          <button class='button' type='submit'>Créer la playlist</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          HTML;
 
         } elseif ($this->http_method === 'POST') {
             $nom = filter_var($_POST['nom'], FILTER_SANITIZE_SPECIAL_CHARS);

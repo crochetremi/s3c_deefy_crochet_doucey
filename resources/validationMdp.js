@@ -1,4 +1,4 @@
-// Indications de validité de mot de passe
+// Validation du mot de passe
 const indicationsValiditeMDP = {
     longueur: {
         regex: /.{8,}/,
@@ -20,41 +20,43 @@ const indicationsValiditeMDP = {
         regex: /[!@#$%^&*(),.?":{}|<>]/,
         message: 'Au moins un caractère spécial'
     }
-}
-
+};
 
 // Affiche les indications de validité du mot de passe
 function afficherIndicationsMDP(password) {
-    let indications = document.getElementById('indicationsMDP');
-    indications.classList.add('help');
-    indications.innerHTML = 'Votre mot de passe doit contenir :';
+    const indications = document.getElementById('indicationsMDP');
+    if (!indications) return;
+
+    indications.innerHTML = '';
+
     Object.values(indicationsValiditeMDP).forEach(indication => {
-        let item = document.createElement('li');
+        const item = document.createElement('li');
         item.textContent = indication.message;
-        item.style.color = indication.regex.test(password) ? 'green' : 'red';
-        item.style.marginLeft = '20px';
+        const isValid = indication.regex.test(password);
+        item.style.color = isValid ? '#00ff88' : '#ff4444';
+        item.style.transition = 'color 0.3s ease';
         indications.appendChild(item);
     });
 }
 
-// Vérifie la validité du mot de passe à chaque saisie
-let motDePasse = document.getElementById('password');
-let indic = document.getElementById('indicationsMDP');
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    const motDePasse = document.getElementById('password');
+    const indic = document.getElementById('indicationsMDP');
 
-if (motDePasse && indic) {
-    motDePasse.addEventListener('input', function () {
-        let password = motDePasse.value;
-        afficherIndicationsMDP(password);
-    });
-    afficherIndicationsMDP(motDePasse.value);
+    if (motDePasse && indic) {
+        afficherIndicationsMDP(motDePasse.value);
 
-    motDePasse.addEventListener('focus', function () {
-        let indications = document.getElementById('indicationsMDP');
-        indications.classList.add('show');
-    });
+        motDePasse.addEventListener('input', function() {
+            afficherIndicationsMDP(motDePasse.value);
+        });
 
-    motDePasse.addEventListener('blur', function () {
-        let indications = document.getElementById('indicationsMDP');
-        indications.classList.remove('show');
-    });
-}
+        motDePasse.addEventListener('focus', function() {
+            indic.classList.add('show');
+        });
+
+        motDePasse.addEventListener('blur', function() {
+            indic.classList.remove('show');
+        });
+    }
+});
