@@ -128,10 +128,9 @@ select,
 .input {
     width: 100%;
     padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    color: #f0f0f0;
+    color: #000000;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
@@ -139,8 +138,8 @@ select,
 input:focus,
 select:focus {
     outline: none;
+    color: #000000;
     border-color: #00ff88;
-    background: rgba(255, 255, 255, 0.08);
 }
 
 /* Validation mot de passe */
@@ -185,9 +184,9 @@ button {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 10px 20px;
-    display: inline-block;
+    margin: 10px auto;
     text-decoration: none;
+    text-align: center;
 }
 
 .button:hover,
