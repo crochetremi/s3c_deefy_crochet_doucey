@@ -40,3 +40,8 @@ La base de données est crée par les deux scripts situés dans le dossier mysql
   - remi.crochet@example.com | password
   - alix.doucey@example.com | password
 - Il ne sera pas possible de lire les fichiers audio pour ces utilisateurs de tests. Par contre, pour les tracks ajoutées après, ce sera possible.
+- Lors de l'ajout de vos propres titres, il est possible de rencontrer l'erreur suivante :
+  - `Erreur : le dossier d'upload n'est pas accesible en écriture`
+  - si cela venait à arriver, il suffit de faire :
+  ```bash
+  chmod 777 ressources/audio
